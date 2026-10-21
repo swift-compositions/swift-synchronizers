@@ -22,10 +22,13 @@ extension Synchronize {
     public borrowing func synchronize<R, E: Swift.Error>(
         _ body: () throws(E) -> R
     ) throws(E) -> R {
-        var captured: Result<R, E>!
+        var captured: Result<R, E>?
         _runSynced {
             captured = Result { () throws(E) -> R in try body() }
         }
-        return try captured.get()
+        guard let result = captured else {
+            preconditionFailure("_runSynced returned without running its body")
+        }
+        return try result.get()
     }
 }
