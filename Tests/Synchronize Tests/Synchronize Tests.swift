@@ -2,17 +2,19 @@ import Synchronization
 import Synchronizers_Test_Support
 import Testing
 
-extension Synchronize {
+enum `Synchronize Tests` {}
+
+extension `Synchronize Tests` {
     @Suite
     struct Test {}
 }
 
-extension Synchronize.Test {
+extension `Synchronize Tests`.Test {
     @Suite
     struct `Type Erasure` {}
 }
 
-extension Synchronize.Test.`Type Erasure` {
+extension `Synchronize Tests`.Test.`Type Erasure` {
     @Test
     func `wraps Synchronizer.Blocking via default init`() {
         let source = Synchronizer.Blocking<1>()
