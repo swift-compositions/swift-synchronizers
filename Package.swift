@@ -40,28 +40,28 @@ let package = Package(
         .target(
             name: "Synchronizer Protocol",
             dependencies: [
-                "Synchronizer Namespace"
+                .target(name: "Synchronizer Namespace")
             ]
         ),
 
         .target(
             name: "Synchronize",
             dependencies: [
-                "Synchronizer Protocol"
+                .target(name: "Synchronizer Protocol")
             ]
         ),
 
         .target(
             name: "Synchronizable",
             dependencies: [
-                "Synchronizer Protocol"
+                .target(name: "Synchronizer Protocol")
             ]
         ),
 
         .target(
             name: "Synchronizer Blocking",
             dependencies: [
-                "Synchronizer Protocol",
+                .target(name: "Synchronizer Protocol"),
                 .product(name: "Kernel", package: "swift-kernel"),
             ]
         ),
@@ -69,18 +69,18 @@ let package = Package(
         .target(
             name: "Synchronizers",
             dependencies: [
-                "Synchronizer Namespace",
-                "Synchronizer Protocol",
-                "Synchronize",
-                "Synchronizable",
-                "Synchronizer Blocking",
+                .target(name: "Synchronizer Namespace"),
+                .target(name: "Synchronizer Protocol"),
+                .target(name: "Synchronize"),
+                .target(name: "Synchronizable"),
+                .target(name: "Synchronizer Blocking"),
             ]
         ),
 
         .target(
             name: "Synchronizers Test Support",
             dependencies: [
-                "Synchronizers",
+                .target(name: "Synchronizers"),
                 .product(name: "Kernel Test Support", package: "swift-kernel"),
             ],
             path: "Tests/Support"
@@ -89,16 +89,16 @@ let package = Package(
         .testTarget(
             name: "Synchronize Tests",
             dependencies: [
-                "Synchronize",
-                "Synchronizer Blocking",
-                "Synchronizers Test Support",
+                .target(name: "Synchronize"),
+                .target(name: "Synchronizer Blocking"),
+                .target(name: "Synchronizers Test Support"),
             ]
         ),
         .testTarget(
             name: "Synchronizer Blocking Tests",
             dependencies: [
-                "Synchronizer Blocking",
-                "Synchronizers Test Support",
+                .target(name: "Synchronizer Blocking"),
+                .target(name: "Synchronizers Test Support"),
             ]
         ),
     ],
